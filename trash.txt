@@ -1,0 +1,46 @@
+//Add your trash code here
+
+num way sum dp
+    dp[0]=1;
+    for(int i=0;i<n;i++)
+        for(int x=maxn;x>=C[i];x--)
+            (dp[x]+=dp[x-C[i]])%=mod;
+
+void code()
+{    
+    int n;
+    cin>>n;
+
+    vi a(n);
+    cin>>a;
+    sort(all(a));
+    int jj=0;
+
+    msi mm;
+    for (auto& e : a) mm.insert(e);
+
+    for (int i = n; i > 0; i--)
+    {
+        auto it = mm.find(i);
+        if(it!=mm.end())
+        {
+            mm.erase(it);
+        }
+        else
+        {
+            auto ll=mm.end();
+            --ll;
+            int uu=*ll;
+            if (uu>(2*i))
+            {
+                mm.erase(ll);
+                jj++;
+            }
+            else
+                { printl(-1); return; }
+                
+        }
+    }
+
+    printl(jj);
+}
